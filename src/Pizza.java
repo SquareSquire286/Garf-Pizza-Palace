@@ -18,6 +18,6 @@ public class Pizza extends AbstractPizza
     @Override
     public void printIngredients() // The only default ingredients are mozzarella cheese and tomato sauce.
     {
-        System.out.print("Pizza Ingredients: Mozzarella Cheese, Tomato Sauce, ");   
+        System.out.print("Pizza Ingredients: Mozzarella Cheese. Tomato Sauce. ");   
     }
 }
