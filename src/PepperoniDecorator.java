@@ -13,7 +13,7 @@ public class PepperoniDecorator extends AbstractDecorator
     }
     
     @Override
-    public void printIngredients() // The only default ingredients are mozzarella cheese and tomato sauce.
+    public void printIngredients()
     {
         pizza.printIngredients();
         System.out.print("Pepperoni. ");   
