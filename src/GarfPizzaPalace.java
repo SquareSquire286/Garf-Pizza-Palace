@@ -3,39 +3,13 @@ import java.util.InputMismatchException;
 
 public class GarfPizzaPalace
 {
-    public PastaFactory pastaFactory;
-
-    public GarfPizzaPalace()
-    {
-	pastaFactory = new PastaFactory();
-    }
-
-    public void createOrder(int choice)
-    {
-	if (choice == 1)
-	    this.createPizzaOrder();
-
-	else if (choice == 2)
-	    this.createPastaOrder();
-
-	else System.out.println("Invalid choice. Exiting program.");
-    }
-
-    public void createPizzaOrder()
-    {
-	System.out.println("Pizza Module Coming Soon");
-    }
-
-    public void createPastaOrder()
-    {
-	System.out.println("Pasta Module Coming Soon");
-    }
-
     public static void main(String[] args)
     {
 	GarfPizzaPalace app = new GarfPizzaPalace();
 	Scanner scanner = new Scanner(System.in);
+	FacadeInterface facadeInterface = new FacadeInterface();
 
+	System.out.println("");
 	System.out.println("*******************************");
 	System.out.println("Welcome to Garf's Pizza Palace!");
 	System.out.println("*******************************");
@@ -45,12 +19,21 @@ public class GarfPizzaPalace
 
 	try
 	    {
-		int choice = scanner.nextInt();
-	        app.createOrder(choice);
+		char choice = scanner.nextLine().charAt(0);
+	        facadeInterface.createOrder(choice);
+
+		AbstractPizza pizza = facadeInterface.getPizza();
+		System.out.println("");
+		pizza.printIngredients();
+		System.out.println("");
+		System.out.println("Pizza Price: $" + String.format("%.2f", pizza.getPrice()));
+		System.out.println("");
 	    }
 	catch (Exception e)
 	    {
+		System.out.println("");
 		System.out.println("Invalid choice. Exiting program.");
+		System.out.println("");
 	    }
     }
 }
