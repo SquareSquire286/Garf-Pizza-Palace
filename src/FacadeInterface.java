@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class FacadeInterface
 {
     private PastaFactory pastaFactory;
-    private AbstractPizza pizza, proxyPizza;
+    private AbstractPizza finalPizza, proxyPizza;
     private char[] ingredientList;
     private int arrayCount;
     private Scanner scanner;
@@ -157,12 +157,12 @@ public class FacadeInterface
     
     public void updatePizza()
     {
-	pizza = proxyPizza;
+	finalPizza = proxyPizza;
     }
 
     public AbstractPizza getPizza()
     {
-	return pizza;
+	return finalPizza;
     }
 
     public void createPastaOrder()
