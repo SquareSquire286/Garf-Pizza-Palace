@@ -11,3 +11,7 @@ Completed three additional decorator subclasses for the `Pizza` creation module,
 **30 April 2021**
 
 Began working on client application with class name `GarfPizzaPalace`. The application currently reads one instance of user input, ensures that a valid integer value is entered with a try-catch block, and invokes a Façade-esque order creation module based on the value. If the user enters a 1, then a pizza order is created; if the user enters a 2, then a pasta order is created.
+
+**1 May 2021**
+
+Completed `Pizza` creation module; the user can now select one of six predetermined pizza recipes or from an array of seven toppings to customize their own pizza. The implementation contains elements of the **Façade** and **Proxy** design patterns. First, all of the decoration is encapsulated from the main function, which simply calls a `createOrder()` method in the new `FacadeInteface` class. As well, all individual decorations are applied to a `proxyPizza` object, and the `finalPizza` object returned to the user is only updated upon completing the decoration.
