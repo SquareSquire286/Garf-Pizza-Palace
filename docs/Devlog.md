@@ -15,3 +15,7 @@ Began working on client application with class name `GarfPizzaPalace`. The appli
 **1 May 2021**
 
 Completed `Pizza` creation module; the user can now select one of six predetermined pizza recipes or from an array of seven toppings to customize their own pizza. The implementation contains elements of the **Façade** and **Proxy** design patterns. First, all of the decoration is encapsulated from the main function, which simply calls a `createOrder()` method in the new `FacadeInteface` class. As well, all individual decorations are applied to a `proxyPizza` object, and the `finalPizza` object returned to the user is only updated upon completing the decoration.
+
+**4 May 2021**
+
+Completed `Pasta` creation module, which enables the user to select one of four predetermined pasta dishes or one of 25 different pasta-sauce combinations. The types of pasta are represented by the `PastaFactory` module that was completed on 28 April, while the types of sauce are administered by a new `PastaDecorator` module, with the concrete subclasses being `TomatoSauceDecorator`, `AlfredoSauceDecorator`, `BologneseSauceDecorator`, and `MarinaraSauceDecorator`. Additionally, the user can choose to omit sauce from their order. With these additions, the application is complete.
