@@ -23,11 +23,27 @@ public class GarfPizzaPalace
 	        facadeInterface.createOrder(choice);
 
 		AbstractPizza pizza = facadeInterface.getPizza();
-		System.out.println("");
-		pizza.printIngredients();
-		System.out.println("");
-		System.out.println("Pizza Price: $" + String.format("%.2f", pizza.getPrice()));
-		System.out.println("");
+		Pasta pasta = facadeInterface.getPasta();
+
+		if (pizza != null)
+		    {
+			System.out.println("");
+			pizza.printIngredients();
+			System.out.println("");
+			System.out.println("Pizza Price: $" + String.format("%.2f", pizza.getPrice()));
+			System.out.println("");
+		    }
+
+		else if (pasta != null)
+		    {
+			System.out.println("");
+		        System.out.println("Pasta Supplier: " + pasta.getSupplier());
+			System.out.println("Pasta Price: $" + String.format("%.2f", pasta.getPrice()));
+			System.out.println("");
+		    }
+
+		else return;
+		
 	    }
 	catch (Exception e)
 	    {

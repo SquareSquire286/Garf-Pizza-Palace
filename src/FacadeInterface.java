@@ -3,7 +3,8 @@ import java.util.Scanner;
 public class FacadeInterface
 {
     private PastaFactory pastaFactory;
-    private AbstractPizza finalPizza, proxyPizza;
+    private Pasta pasta, proxyPasta;
+    private AbstractPizza pizza, proxyPizza;
     private char[] ingredientList;
     private int arrayCount;
     private Scanner scanner;
@@ -157,16 +158,123 @@ public class FacadeInterface
     
     public void updatePizza()
     {
-	finalPizza = proxyPizza;
+	pizza = proxyPizza;
     }
 
     public AbstractPizza getPizza()
     {
-	return finalPizza;
+	return pizza;
     }
 
     public void createPastaOrder()
     {
-	System.out.println("Pasta Module Coming Soon");
+        System.out.println("");
+	System.out.println("Garf's Pizza Palace offers traditional recipes and customizable orders.");
+	System.out.println("Press [1] if you want to order a pasta dish from the menu, or any other key if you want to customize your noodle-sauce combination.");
+
+	char choice = scanner.nextLine().charAt(0);
+
+	if (choice == '1')
+	    this.displayPastaDishesMenu();
+
+	else this.displayPastaModule();
+    }
+
+    public void displayPastaDishesMenu()
+    {
+	System.out.println("");
+	System.out.println("To select a pasta dish, press the corresponding key:");
+	System.out.println("[1] Spaghetti & Meat Sauce");
+	System.out.println("[2] Fettucine Alfredo");
+	System.out.println("[3] Meat Lasagna");
+	System.out.println("[Other] Penne Rosa");
+	System.out.println("");
+	System.out.print("Enter your choice here: ");
+
+	char choice = scanner.nextLine().charAt(0);
+	this.buildBasicPasta(choice);
+    }
+
+    public void buildBasicPasta(char choice)
+    {
+	switch (choice)
+	    {
+	        case '1': proxyPasta = new TomatoSauceDecorator(new Spaghetti()); break;
+	        case '2': proxyPasta = new AlfredoSauceDecorator(new Fettucine()); break;
+	        case '3': proxyPasta = new BologneseSauceDecorator(new Lasagna()); break;
+	        default: proxyPasta = new MarinaraSauceDecorator(new Penne());
+	    }
+
+	this.updatePasta();
+    }
+
+    public void displayPastaModule()
+    {
+	System.out.println("");
+	System.out.println("To choose a type of pasta, press the corresponding key:");
+	System.out.println("[1] Spaghetti");
+	System.out.println("[2] Fettucine");
+	System.out.println("[3] Linguine");
+	System.out.println("[4] Lasagna");
+	System.out.println("[Other] Penne");
+	System.out.println("");
+	System.out.print("Enter your choice here: ");
+
+	char choice = scanner.nextLine().charAt(0);
+	this.selectNoodle(choice);
+    }
+
+    public void selectNoodle(char choice)
+    {
+	switch (choice)
+	    {
+	        case '1': proxyPasta = new Spaghetti(); break;
+	        case '2': proxyPasta = new Fettucine(); break;
+	        case '3': proxyPasta = new Linguine(); break;
+	        case '4': proxyPasta = new Lasagna(); break;
+	        default: proxyPasta = new Penne();
+	    }
+
+	this.displaySauceModule();
+    }
+
+    public void displaySauceModule()
+    {
+	System.out.println("");
+	System.out.println("To choose a type of sauce, press the corresponding key:");
+	System.out.println("[1] Tomato Sauce");
+	System.out.println("[2] Alfredo Sauce");
+	System.out.println("[3] Bolognese Sauce");
+	System.out.println("[4] Marinara Sauce");
+	System.out.println("[Other] No Sauce");
+	System.out.println("");
+	System.out.print("Enter your choice here: ");
+
+	char choice = scanner.nextLine().charAt(0);
+	this.selectSauce(choice);
+    }
+
+    public void selectSauce(char choice)
+    {
+	switch (choice)
+	    {
+	        case '1': proxyPasta = new TomatoSauceDecorator(proxyPasta); break;
+	        case '2': proxyPasta = new AlfredoSauceDecorator(proxyPasta); break;
+	        case '3': proxyPasta = new BologneseSauceDecorator(proxyPasta); break;
+	        case '4': proxyPasta = new MarinaraSauceDecorator(proxyPasta);
+	        default: break;
+	    }
+
+	this.updatePasta();
+    }
+
+    public void updatePasta()
+    {
+	pasta = proxyPasta;
+    }
+
+    public Pasta getPasta()
+    {
+	return pasta;
     }
 }
